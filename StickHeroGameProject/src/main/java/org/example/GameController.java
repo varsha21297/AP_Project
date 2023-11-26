@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GameController {
     // Properties
-    private StickHero stickHero;
+    private ArrayList<StickHero> stickHero;
     private List<Platform> platforms;
     private List<Cherry> cherries;
 
@@ -16,7 +16,7 @@ public class GameController {
         this.cherries = cherries;
     }
 
-    public StickHero getStickHero() {
+    public ArrayList<StickHero> getStickHero() {
         return stickHero;
     }
 
@@ -29,8 +29,8 @@ public class GameController {
     }
 
     // Methods
-    public void startGame() {
-        Platform platform=new Platform();
+    public void startGame(int width, int height) {
+        Platform platform= new Platform(width,height);
         // Initialize and start the game
     }
 

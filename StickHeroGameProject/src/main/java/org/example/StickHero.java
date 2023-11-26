@@ -1,5 +1,6 @@
 package org.example;
 
+
 public class StickHero {
     // Properties
     private int score;
@@ -21,6 +22,32 @@ public class StickHero {
     // Methods
     public void move() {
         // Move the stick-hero between platforms
+        // Implement the logic to move the stick-hero between platforms
+        // You can use keyboard inputs, touch gestures, or any other input mechanism to control the movement
+        
+        // Example code:
+        // Check if the stick-hero is moving left
+
+        
+
+        /*if (isMovingLeft()) {
+            // Move the stick-hero to the left
+            stickHero.setX(stickHero.getX() - moveSpeed);
+        }
+        
+        // Check if the stick-hero is moving right
+        if (isMovingRight()) {
+            // Move the stick-hero to the right
+            stickHero.setX(stickHero.getX() + moveSpeed);
+        }
+        
+        // Check if the stick-hero is jumping
+        if (isJumping()) {
+            // Implement the logic to make the stick-hero jump
+        }
+        
+        // Update the stick-hero's position and perform any necessary collision detection or platform interaction
+        updateStickHeroPosition();*/
     }
 
     public void extendStick() {
