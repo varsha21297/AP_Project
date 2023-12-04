@@ -9,15 +9,29 @@
             "name": "StickHeroGame",
             "request": "launch",
             "mainClass": "StickHeroGame",
-            "projectName": "StickHeroGameProject",
-            "vmArgs": "--module-path \"C:/Users/acer/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-
+            "projectName": "APforme_f7315d9e",
+            "vmArgs": "--module-path \"C:/Users/acer/javafx-sdk-21.0.1/lib\" --add-modules=javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "APforme_f7315d9e"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Game",
+            "request": "launch",
+            "mainClass": "Game",
+            "projectName": "APforme_f7315d9e",
+            "vmArgs": "--module-path \"C:/Users/acer/javafx-sdk-21.0.1/lib\" --add-modules=javafx.controls,javafx.fxml"
         }
     ]
 }
