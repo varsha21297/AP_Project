@@ -1,5 +1,8 @@
+package org.example;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.example.Pillar;
 
 public class Cherry extends Circle {
 
