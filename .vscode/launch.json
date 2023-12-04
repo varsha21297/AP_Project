@@ -8,7 +8,7 @@
             "type": "java",
             "name": "StickHeroGame",
             "request": "launch",
-            "mainClass": "org.example.StickHeroGame",
+            "mainClass": "StickHeroGame",
             "projectName": "StickHeroGameProject",
             "vmArgs": "--module-path \"C:/Users/acer/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
 
@@ -18,7 +18,6 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "vmArgs": "--module-path \"C:/Users/acer/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
