@@ -1,71 +1,136 @@
 package org.example;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
-public class StickHero {
-    // Properties
-    private int score;
-    private int cherries;
+public class StickHero extends Rectangle {
+    private double positionX;
+    private double positionY;
+    private Stick stick;
+    private double score;
+    private Timeline stretchTimeline;
+    private boolean isMovingLeft, isMovingRight;
+    private boolean isAlive; // New flag for the alive state
 
     public StickHero() {
-        this.score = 0;
-        this.cherries = 0;
+        super(40, 40, Color.PEACHPUFF);
+        this.stick = new Stick();
+        initializeTimeline();
+        initializeMovement();
+        isAlive = true; // Initialize as alive
     }
 
-    public int getScore() {
+    private void initializeTimeline() {
+        stretchTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    stretchStick(); // Call the method to stretch the stick
+                })
+        );
+        stretchTimeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    private void initializeMovement() {
+        setOnKeyPressed(this::handleKeyPress);
+        setOnKeyReleased(this::handleKeyRelease);
+    }
+
+    private void handleKeyPress(KeyEvent event) {
+        if (isAlive) {
+            switch (event.getCode()) {
+                case LEFT:
+                    moveLeft();
+                    break;
+                case RIGHT:
+                    moveRight();
+                    break;
+            }
+        }
+    }
+
+    private void handleKeyRelease(KeyEvent event) {
+        if (isAlive) {
+            switch (event.getCode()) {
+                case LEFT:
+                case RIGHT:
+                    stopMoving();
+                    break;
+            }
+        }
+    }
+
+    public double getScore() {
         return this.score;
     }
 
-    public int getCherries() {
-        return this.cherries;
+    public void move(double deltaX, double deltaY) {
+        this.positionX += deltaX;
+        this.positionY += deltaY;
     }
 
-    // Methods
-    public void move() {
-        // Move the stick-hero between platforms
-        // Implement the logic to move the stick-hero between platforms
-        // You can use keyboard inputs, touch gestures, or any other input mechanism to control the movement
-        
-        // Example code:
-        // Check if the stick-hero is moving left
+    public void stretchStick() {
+        // Stretch the stick
+        this.stick.increaseLength();
 
-        
+        // Update the coordinates of the stick based on the length
+        this.stick.updateCoordinates(this.stick.getXStart(), this.stick.getYStart());
 
-        /*if (isMovingLeft()) {
-            // Move the stick-hero to the left
-            stickHero.setX(stickHero.getX() - moveSpeed);
-        }
-        
-        // Check if the stick-hero is moving right
-        if (isMovingRight()) {
-            // Move the stick-hero to the right
-            stickHero.setX(stickHero.getX() + moveSpeed);
-        }
-        
-        // Check if the stick-hero is jumping
-        if (isJumping()) {
-            // Implement the logic to make the stick-hero jump
-        }
-        
-        // Update the stick-hero's position and perform any necessary collision detection or platform interaction
-        updateStickHeroPosition();*/
+        // Rotate the stick horizontally
+        this.stick.rotateStickHorizontal();
     }
 
-    public void extendStick() {
-        // Extend the stick to bridge gaps
+    public void startStretching() {
+        // Start stretching when the mouse is pressed
+        stretchTimeline.play();
+    }    
+
+    public void stopStretching() {
+        // Stop stretching when the mouse is released
+        stretchTimeline.stop();
+    }
+    
+
+    public double getPositionX() {
+        return this.positionX;
     }
 
-    public void flipUpsideDown() {
-        // Flip the character to collect rewards
+    public double getPositionY() {
+        return this.positionY;
     }
 
-    public void revive() {
-        // Revive the character using cherries
+    public void increaseScore() {
+        this.score++;
     }
 
-    public void restartLevel() {
-        // Restart the current level
+    public void moveLeft() {
+        double moveDelta = 10; // Adjust the movement speed as needed
+        this.setX(this.getX() - moveDelta);
+        isMovingLeft = true;
+        isMovingRight = false;
+    }
+    
+    public void moveRight() {
+        double moveDelta = 10; // Adjust the movement speed as needed
+        this.setX(this.getX() + moveDelta);
+        isMovingLeft = false;
+        isMovingRight = true;
+    }
+    
+
+    public void stopMoving() {
+        // Stop movement
+        isMovingLeft = false;
+        isMovingRight = false;
     }
 
-    // Other relevant methods for scoring, saving, loading, etc.
+    public boolean isAlive() {
+        return isAlive;
+    }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 }
